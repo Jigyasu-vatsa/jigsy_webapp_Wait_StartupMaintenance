@@ -128,6 +128,7 @@
         <div class="collapse navbar-collapse" id="navMenu">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold">
             <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services_nav">Services</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact_info">Contact</a></li>
           </ul>
         </div>
@@ -146,14 +147,39 @@
     <main>
       <div class="container text-center py-5">
         <h1 class="display-6 fw-bold text-warning mb-5 maintainace_head">🛑 Under Maintainance or Service Startup in Progress 🛑</h1>
-        <hr class="w-50 mx-auto border-warning">
+        
         
         <!-- Countdown Display -->
-        <div id="countdown-display" class="countdown-circle text-danger">65</div>
+        <div id="countdown-display" class="countdown-circle text-danger" style="height:50px">60</div>
         
-        <p class="text-muted small mb-4 maintainace_timer">
-          You will be automatically redirected to the official website in <span id="time-left" class="fw-bold text-danger">65</span> seconds.
+        <p class="text-muted small maintainace_timer mb-0">
+          You will be automatically redirected to the official website in <span id="time-left" class="fw-bold text-danger">60</span> seconds.
         </p>
+		
+		<hr class="w-50 mx-auto border-warning my-4" >
+		<div class="row mx-5 mb-5 mt-0 justify-content-between" id="services_nav">
+			<h3 style="text-align:left" class="p-0 py-1 ">Services</h3>
+			
+			<div class="col-md-3 card bg-body ">
+				<div class="card-header fw-bold"> JIGSY INDIA </div>
+				<div class="card-header bg-body my-auto border-0"> You can explore our professional services for all sectors with this official website </div>
+				<div class="card-footer"> automatically redirected shortly </div>
+			</div>
+			
+			<div class="col-md-3 card bg-body ">
+				<div class="card-header fw-bold"> Founders Portfolio </div>
+				<div class="card-header bg-body my-auto border-0"> Here you can explore about our fouder </div>
+				<div class="card-footer"> jigyasu.jigsy.in </div>
+			</div>
+			
+			<div class="col-md-3  card bg-body">
+				<div class="card-header fw-bold"> All Services </div>
+				<div class="card-header bg-body my-auto border-0"> You can navigate all publicly available services for the citizens </div>
+				<div class="card-footer"> listing shortly </div>
+			</div>
+		<div>
+		
+        <hr class="border-warning my-4">
 		
 		<p class="lead maintainace_content">
           Our service has temporarily paused due to maintainance works.<br><br>
@@ -219,7 +245,7 @@
               <a href="https://facebook.com/jigsy25" target="_blank" class=" me-3 fs-4 hover-primary text-white"><i class="bi bi-facebook"></i></a>
             </div>
             <div class="small fw-bold text-secondary my-1">
-              Total Visitors: <span id="visitor-count" class="text-white fw-bold">....</span>
+              Total Visitors: <span id="visitor-count" class="text-white fw-bold">Lo..</span>
             </div>
             <div class="small text-secondary my-1">
               <a href="#" class=" text-decoration-none hover-warning">
@@ -302,7 +328,7 @@
       
       // Countdown and Redirect Logic (for "waking up" the service)
       const REDIRECT_URL = "https://jigsyindia.jigsy.in";
-      const INITIAL_COUNT = 65; // Seconds to wait
+      const INITIAL_COUNT = 60; // Seconds to wait
       let countdown = INITIAL_COUNT;
       
       const countdownDisplay = document.getElementById('countdown-display');
