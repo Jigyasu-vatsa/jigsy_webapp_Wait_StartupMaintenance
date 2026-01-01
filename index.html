@@ -187,7 +187,7 @@
 			
 			<div class="col-md-3 card bg-body mb-1 mb-md-0">
 				<div class="card-header fw-bold"> All Services </div>
-				<div class="card-header bg-body my-auto border-0"> You can navigate all publicly available services for the citizens </div>
+				<div class="card-header bg-body my-auto border-0"> You can navigate all publicly available services for the citizens from here </div>
 				<div class="card-footer"> listing shortly </div>
 			</div>
           <div id="verification-prompt-area-bottom" class="row justify-content-center my-4 d-none">
@@ -196,7 +196,7 @@
 		
         <hr class="border-warning my-4">
 		
-		<p class="lead maintainace_content">
+		<p class="maintainace_content fw-light fs-6">
           Our service has temporarily paused due to maintainance works.<br><br>
           To continue to the page you requested, please wait we are checking if requested page is available and ready for serving or not, if available redirecting you to official website shortly.
         </p>
@@ -208,9 +208,14 @@
             <i class="bi bi-arrow-right-circle me-2"></i> Redirect Now
           </a>
         </p>
+
+		  <hr class="w-50 mx-auto border-warning my-2 mt-4">
+
+			 <h6 style="text-align:center" class="p-0 py-1 mt-5 mb-1 fw-bold maintainace_content" id="contact_info"> You are important to us.<br>You can mail us your query at <br><br>📨  <a href="mailto:jigsy25@gmail.com" class="text-decoration-none">jigsy25@gmail.com</a> 📨 <br><br>we will respond to your mail soon.</h6>
+			 
       </div>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-3" style="font-family: 'Inter', sans-serif;" id="contact_info">
+    <footer class="bg-dark text-white pt-5 pb-3" style="font-family: 'Inter', sans-serif;">
       <div class="container">
         <div class="row pb-4 border-bottom border-secondary">
           <div class="col-sm-6 col-md-4 mb-4 mb-lg-0">
@@ -329,12 +334,15 @@
 
     // --- Staged Countdown and Redirect Logic ---
 
-    //const REDIRECT_URL = "https://jigsyindia.jigsy.in"; // Using # for testing, ensure this is correct on live site
+    //const REDIRECT_URL = "https://jigsyindia.jigsy.in"; // Using # for testing, ensure this is correct on live site  --------------------
 
 	const REDIRECT_URL = "https://maintenance.jigsy.in"; // Using # for maintainance site
 	
-	const INITIAL_COUNT = 60; // Total time until redirection (seconds)
-    
+	//const INITIAL_COUNT = 60; // Total time until redirection (seconds)  ----------------
+
+	const INITIAL_COUNT = 40; // Total time until redirection (seconds)
+
+	
     // UPDATED REQUIREMENT: Minimum total wait must be 60 - 30 (Stage 3 duration) = 30 seconds.
     const MINIMUM_TOTAL_WAIT = 30; 
 
@@ -652,6 +660,7 @@
   </body>
 
 </html>
+
 
 
 
