@@ -561,12 +561,12 @@
                 }, uiScrollDelay);
 
                 // Start Stage 3 after the combined delay
-                stage3Timeout = setTimeout(stage3_Countdown, newDelayMs);
+                //stage3Timeout = setTimeout(stage3_Countdown, newDelayMs);
 
 				stage3Timeout = setTimeout(() => {
-                totalTimeElapsed = currentTotalElapsed + (newDelayMs / 1000);
+                totalTimeElapsed += currentTotalElapsed + (newDelayMs);
                 stage3_Countdown();
-            }, finalTimeoutMs);
+            }, newDelayMs);
 				
             }
         };
@@ -596,7 +596,7 @@
         // Auto-advance if no click
 	    stage3Timeout = setTimeout(() => {
 	        if (!verificationComplete) {
-	            totalTimeElapsed += 25; 
+	            totalTimeElapsed += stageDuration/1000; 
 	            stage3_Countdown();
 	        }
 	    }, stageDuration);
@@ -682,6 +682,7 @@
   </body>
 
 </html>
+
 
 
 
