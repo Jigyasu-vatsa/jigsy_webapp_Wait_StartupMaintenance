@@ -575,7 +575,7 @@
             
             if (progressBar && !verificationComplete) {
                 progressBar.style.width = percentage + '%';
-                progressBar.innerHTML = `Remaining Delay: ${timeLeft}s`;
+                progressBar.innerHTML = `${timeLeft}s Remaining`;
             }
             
             if (timePassed >= stageDuration) {
@@ -585,7 +585,7 @@
         
         
         // Advance to Stage 3 after 25 seconds if not already verified
-        stage3Timeout = setTimeout(stage3_Countdown, 25000);
+        stage3Timeout = setTimeout(stage3_Countdown, 5000);
         totalTimeElapsed += 25; // Base elapsed time before Stage 3 starts
     }
 
@@ -669,6 +669,7 @@
   </body>
 
 </html>
+
 
 
 
