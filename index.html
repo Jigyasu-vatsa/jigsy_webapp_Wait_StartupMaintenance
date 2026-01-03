@@ -225,7 +225,7 @@
 
 	  
     <main>
-      <div class="container text-center py-4 mb-5 mt-4">
+      <div class="container text-center py-4 my-5">
         <h1 class="display-6 fw-bold text-warning mb-4 maintainace_head">⏩ Conneting You To JIGSY ⏩</h1>
         
         <div id="countdown-display" class="text-center"> </div>
@@ -764,8 +764,10 @@
 
             let timeLeft = INITIAL_COUNT - totalTimeElapsed;
 
-            if (countdownCircle) countdownCircle.innerText = Math.round(Math.max(0, timeLeft)); 
-			if (countdownCircle) countdownCircle.style.height = '120px';
+            if (countdownCircle) {
+				countdownCircle.innerText = Math.round(Math.max(0, timeLeft)); 
+				countdownCircle.style.height = '120px !important';
+			}
             if (timeLeftElement) timeLeftElement.innerText = 'in ' + Math.round(Math.max(0, timeLeft)) + ' seconds';
 
             if (timeLeft <= 0) {
@@ -808,6 +810,7 @@
 </body>
 
 </html>
+
 
 
 
