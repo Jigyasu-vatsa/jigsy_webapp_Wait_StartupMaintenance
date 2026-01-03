@@ -241,7 +241,7 @@
 		
         <div class="row mx-md-5 my-3 p-md-3 justify-content-between maintainace_content" id="services_nav">
 			
-          <h3 style="text-align:center; padding: 20px 0 25px 0 !important;" class="p-0 py-1 maintainace_head">Services</h3>
+          <h3 style="text-align:left; padding: 20px 0 25px 10px !important;" class="p-0 py-1 maintainace_head">Services</h3>
 			<div class="col-md-3 card bg-body mb-1 mb-md-0">
 				<div class="card-header fw-bold"> JIGSY INDIA </div>
 				<div class="card-header bg-body my-auto border-0 fw-light"> You can explore our professional services for all sectors with this official website </div>
@@ -268,7 +268,7 @@
 		
         <hr class="border-warning my-4">
 		
-		<p class="maintainace_content fw-light">
+		<p class="lead maintainace_content fw-light">
           Our service has temporarily paused due to maintainance works.<br>
           To continue to the page you requested, please wait we are checking if requested page is available and ready for serving or not, if available redirecting you to official website shortly.
         </p>
@@ -283,7 +283,7 @@
 
 		  <hr class="w-50 mx-auto border-warning my-2 mt-4">
 
-			 <h6 style="text-align:center" class="p-0 py-1 mt-5 mb-1 fw-bold maintainace_content" id="contact_info"> You are important to us.<br>You can mail us your query at <br><br>📨  <a href="mailto:jigsy25@gmail.com" class="text-decoration-none">jigsy25@gmail.com</a> 📨 <br><br>we will respond to your mail soon.</h6>
+			 <h6 style="text-align:center" class="p-0 py-1 mt-5 mb-1 fw-bold maintainace_content" id="contact_info"> 🫵You are important to us🤞<br><br>And you can also mail us your query at <br><br>📨  <a href="mailto:jigsy25@gmail.com" class="text-decoration-none">jigsy25@gmail.com</a> 📨 <br><br>we will respond to your mail as soon as possible🌠</h6>
 			 
       </div>
     </main>
@@ -472,6 +472,8 @@
                 countdownCircle.innerHTML = `<i class="${iconClass} ${colorClass}" style="font-size: 2rem;"></i>`;
             }
         }
+
+		
         // Update the main content paragraph with the stage message
         const mainContentPara = document.querySelector('.lead.maintainace_content');
         if (mainContentPara) mainContentPara.innerHTML = initialContent;
@@ -497,8 +499,8 @@
         mainHeading.innerHTML = '🛑 Forwarding Request 🛑';
         updateDisplay('bi bi-lightning-charge', 'text-primary', true, // Spinning ON
             `Our service may face some delays due to security check standards.
-            <br><br>Please wait while we perform an initial check. This process takes approximately 5 seconds.
-            <p class="mt-4">~We appreciate your patience.</p>`);
+            <br>Please wait while we perform an initial check. This process takes approximately 5 seconds.
+            <p class="mt-4 fw-bold">~We appreciate your patience.</p>`);
         setTimeDisplayMessage('shortly', 'text-primary');
 
         if (manualRedirectBtn) {
@@ -550,7 +552,7 @@
         mainHeading.innerHTML = '🔒 Human Verification Required 🔒';
         updateDisplay('bi bi-shield-lock-fill', 'text-info', false, // Spinning OFF
             `To ensure optimal performance and security against automated requests, a quick human verification is required.
-            <br>Kindly scroll down and click the **Verification Button** below the Services section to proceed faster.
+            <br>Kindly click the **Verification Button** inside the Services section to proceed faster.
             <p class="mt-4">~Your cooperation helps us maintain service integrity.</p>`);
         setTimeDisplayMessage('shortly', 'text-info');
         
@@ -578,7 +580,7 @@
                 <div class="card shadow border-info bg-body">
                     <div class="card-body text-center p-3">
                         <h5 class="card-title text-info fw-bold mb-1 maintainace_head"><i class="bi bi-robot me-2"></i> Anti-Bot Security Check</h5>
-                        <p class="card-text small text-muted mb-0 maintainace_content"><br>Scroll down to the bottom of the **Services** section and click the **Complete Verification** button to prove you're human and speed up verification.<br><br> Auto verification may take upto 30 seconds to auto-verify your request against Anti-Bot security check</p>
+                        <p class="card-text small text-muted mb-0 maintainace_content"><br>Scroll down into the bottom of *Services* section and click the *Complete Verification* button to speed up verification.<br> Auto verification may take upto ~30 seconds.</p>
                     </div>
                 </div>
             </div>
@@ -804,6 +806,7 @@
 </body>
 
 </html>
+
 
 
 
