@@ -497,7 +497,7 @@
 		
         // Stage 0: Initial UI Setup (10s)
         mainHeading.innerHTML = '🛑 Forwarding Request 🛑';
-        updateDisplay('bi bi-lightning-charge', 'text-primary', true, // Spinning ON
+        updateDisplay('bi bi-lightning-charge', 'text-primary fw-light', true, // Spinning ON
             `Our service may face some delays due to security check standards.
             <br>Please wait while we perform an initial check. This process takes approximately 5 seconds.
             <p class="mt-4 fw-bold">~We appreciate your patience.</p>`);
@@ -550,9 +550,9 @@
 		
         // Stage 2: Interactive Human Verification (25s max)
         mainHeading.innerHTML = '🔒 Human Verification Required 🔒';
-        updateDisplay('bi bi-shield-lock-fill', 'text-info', false, // Spinning OFF
+        updateDisplay('bi bi-shield-lock-fill', 'text-info fw-light', false, // Spinning OFF
             `To ensure optimal performance and security against automated requests, a quick human verification is required.
-            <br>Kindly click the **Verification Button** inside the Services section to proceed faster.
+            <br>Kindly click the *Verification Button* inside the Services section to proceed faster.
             <p class="mt-4">~Your cooperation helps us maintain service integrity.</p>`);
         setTimeDisplayMessage('shortly', 'text-info');
         
@@ -580,7 +580,7 @@
                 <div class="card shadow border-info bg-body">
                     <div class="card-body text-center p-3">
                         <h5 class="card-title text-info fw-bold mb-1 maintainace_head"><i class="bi bi-robot me-2"></i> Anti-Bot Security Check</h5>
-                        <p class="card-text small text-muted mb-0 maintainace_content"><br>Scroll down into the bottom of *Services* section and click the *Complete Verification* button to speed up verification.<br> Auto verification may take upto ~30 seconds.</p>
+                        <p class="card-text small text-muted mb-0 maintainace_content fw-light"><br>Scroll down to the bottom of *Services* section and click the *Complete Verification* button to speed up verification.<br> Auto verification may take upto ~30 seconds.</p>
                     </div>
                 </div>
             </div>
@@ -638,7 +638,7 @@
                     const topCardBody = verificationPromptAreaTop.querySelector('.card-body');
                     if(topCardBody) {
                         topCardBody.innerHTML = `<h5 class="card-title text-success fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i> Human Verified!</h5>
-                                                 <p class="card-text small text-muted mb-0">Human verification successful, proceeding next....</p>`;
+                                                 <p class="card-text small text-muted mb-0 fw-light">Human verification successful, proceeding next....</p>`;
                     }
                 }
                 
@@ -724,9 +724,9 @@
 		
         // Stage 3: Final Countdown (Now 25 seconds)
         mainHeading.innerHTML = '🛡️ Request Forwarding in Process 🛡️';
-        updateDisplay('bi bi-arrow-clockwise', 'text-warning', true, // Spinning ON
+        updateDisplay('bi bi-arrow-clockwise', 'text-warning fw-light', true, // Spinning ON
             `We are now ready to serve you! You will be automatically redirected to the official website shortly.
-            <br><br>If the automatic redirection fails, please use the button below.
+            <br>If the automatic redirection fails, please use the button below.
             <p class="mt-4">~We appreciate and thanks for your patience.</p>`);
         
         // CRITICAL CHANGE: Set totalTimeElapsed to 25. 
@@ -806,6 +806,7 @@
 </body>
 
 </html>
+
 
 
 
