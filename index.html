@@ -376,7 +376,7 @@
                 countdownCircle.style.height = '150px'; 
                 
                 // Display remaining time 
-                countdownCircle.innerHTML = totalTimeElapsed > 0 ? Math.max(0, INITIAL_COUNT - totalTimeElapsed) : '<i class=" bi bi-lightning-charge "></i>';
+                countdownCircle.innerHTML = totalTimeElapsed > 0 ? Math.round(Math.max(0, INITIAL_COUNT - totalTimeElapsed)) : '<i class=" bi bi-lightning-charge "></i>';
             } else {
                 // Static icon visual (Stage 2 - Verification)
                 // Explicitly remove the spinning class
@@ -669,6 +669,7 @@
   </body>
 
 </html>
+
 
 
 
