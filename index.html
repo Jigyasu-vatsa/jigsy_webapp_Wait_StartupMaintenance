@@ -579,7 +579,7 @@
         const progressTimer = setInterval(() => {
             const timePassed = Date.now() - stage2StartTime;
             const percentage = Math.min(100, (timePassed / stageDuration) * 100);
-            const timeLeft = Math.max(0, stageDuration - Math.floor(timePassed / 1000));
+            const timeLeft = Math.max(0, (stageDuration/1000) - Math.floor(timePassed / 1000));
             
             if (progressBar && !verificationComplete) {
                 progressBar.style.width = percentage + '%';
@@ -682,6 +682,7 @@
   </body>
 
 </html>
+
 
 
 
