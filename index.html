@@ -511,7 +511,9 @@
         const progressBar = document.getElementById('verification-progress');
         
         const stage2StartTime = Date.now();
-        const stageDuration = 25000;
+        //const stageDuration = 25000;
+
+		const stageDuration = Math.round(((INITIAL_COUNT/2)-(INITIAL_COUNT/10))*1000);
         
         const handleInteraction = () => {
             if (!verificationComplete) {
@@ -560,6 +562,12 @@
 
                 // Start Stage 3 after the combined delay
                 stage3Timeout = setTimeout(stage3_Countdown, newDelayMs);
+
+				stage3Timeout = setTimeout(() => {
+                totalTimeElapsed = currentTotalElapsed + (newDelayMs / 1000);
+                stage3_Countdown();
+            }, finalTimeoutMs);
+				
             }
         };
 
@@ -571,22 +579,27 @@
         const progressTimer = setInterval(() => {
             const timePassed = Date.now() - stage2StartTime;
             const percentage = Math.min(100, (timePassed / stageDuration) * 100);
-            const timeLeft = Math.max(0, 25 - Math.floor(timePassed / 1000));
+            const timeLeft = Math.max(0, stageDuration - Math.floor(timePassed / 1000));
             
             if (progressBar && !verificationComplete) {
                 progressBar.style.width = percentage + '%';
                 progressBar.innerHTML = `${timeLeft}s Remaining`;
             }
             
-            if (timePassed >= stageDuration) {
-                clearInterval(progressTimer);
-            }
-        }, 100);
+            if (timePassed >= (stageDuration * 1000) || verificationComplete) {
+            clearInterval(progressTimer);
+        }
+    }, 100);
         
         
         // Advance to Stage 3 after 25 seconds if not already verified
-        stage3Timeout = setTimeout(stage3_Countdown, 5000);
-        totalTimeElapsed += 25; // Base elapsed time before Stage 3 starts
+        // Auto-advance if no click
+	    stage3Timeout = setTimeout(() => {
+	        if (!verificationComplete) {
+	            totalTimeElapsed += 25; 
+	            stage3_Countdown();
+	        }
+	    }, stageDuration);
     }
 
 	//------------------------------  STAGE 3  --------------------------
@@ -669,6 +682,7 @@
   </body>
 
 </html>
+
 
 
 
