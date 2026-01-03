@@ -784,6 +784,14 @@
                 window.location.href = REDIRECT_URL;
             }
         }, 1000);
+
+		// Turn OFF the scan and style the container as "Safe"
+		const scanner = document.getElementById('scanner-overlay');
+		if (scanner) scanner.classList.remove('active-scan');
+		
+		if (servicesPanel) {
+			servicesPanel.classList.add('verified');
+		}
     }
 
     // Start the process when the page loads
@@ -796,6 +804,7 @@
 </body>
 
 </html>
+
 
 
 
