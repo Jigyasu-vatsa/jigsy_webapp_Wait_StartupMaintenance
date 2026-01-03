@@ -551,7 +551,7 @@
                 
                 // We add a 5-second UI/Scroll delay, and then the required additional wait.
                 const uiScrollDelay = 5000;
-                const newDelayMs = uiScrollDelay + (requiredAdditionalWait * 1000); 
+                const newDelayMs = requiredAdditionalWait * 1000; 
                 
                 console.log(`Current Elapsed: ${currentTotalElapsed}s. Required Wait: ${requiredAdditionalWait}s. Advancing in ${newDelayMs / 1000}s.`);
 
@@ -564,7 +564,7 @@
                 //stage3Timeout = setTimeout(stage3_Countdown, newDelayMs);
 
 				stage3Timeout = setTimeout(() => {
-                totalTimeElapsed = currentTotalElapsed + (newDelayMs);
+                totalTimeElapsed = currentTotalElapsed + (newDelayMs/1000);
                 stage3_Countdown();
             }, newDelayMs);
 				
@@ -682,6 +682,7 @@
   </body>
 
 </html>
+
 
 
 
