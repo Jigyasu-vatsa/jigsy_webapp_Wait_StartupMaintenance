@@ -443,9 +443,12 @@
         fetch(REDIRECT_URL, { method: 'GET', mode: 'no-cors' })
             .catch(e => console.warn("Wakeup request sent."));
 
-        // Advance to Stage 2 after 10 seconds
-        setTimeout(stage2_Verification, 2000);
-        totalTimeElapsed = 2;
+		//------------------------------  STAGE 1  --------------------------
+
+        // Stage 1: Advance to Stage 2 (X after 10 seconds = 10000s X  Now, INITIAL_COUNT by 6 = INITIAL_COUNT/6)
+		const stage1time = Math.round((INITIAL_COUNT*1000)/6);
+        setTimeout(stage2_Verification, stage1time);
+        totalTimeElapsed = stage1time/1000;
     }
 
 	//------------------------------  STAGE 2  --------------------------
@@ -537,7 +540,7 @@
                 verificationComplete = true;
                 
                 const elapsedInStage2 = Math.floor((Date.now() - stage2StartTime) / 1000);
-                const currentTotalElapsed = 10 + elapsedInStage2; // 10s from Stage 0
+                const currentTotalElapsed = totalTimeElapsed + elapsedInStage2; // 10s from Stage 0
                 
                 // Calculate time needed to reach the NEW minimum of 30 seconds
                 const requiredAdditionalWait = Math.max(0, MINIMUM_TOTAL_WAIT - currentTotalElapsed); 
@@ -583,7 +586,7 @@
         
         // Advance to Stage 3 after 25 seconds if not already verified
         stage3Timeout = setTimeout(stage3_Countdown, 25000);
-        totalTimeElapsed = 35; // Base elapsed time before Stage 3 starts
+        totalTimeElapsed += 25; // Base elapsed time before Stage 3 starts
     }
 
 	//------------------------------  STAGE 3  --------------------------
@@ -666,6 +669,7 @@
   </body>
 
 </html>
+
 
 
 
