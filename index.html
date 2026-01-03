@@ -340,7 +340,7 @@
 	
 	//const INITIAL_COUNT = 60; // Total time until redirection (seconds)  ----------------
 
-	const INITIAL_COUNT = 40; // Total time until redirection (seconds)
+	const INITIAL_COUNT = 45; // Total time until redirection (seconds)
 
 	
     // UPDATED REQUIREMENT: Minimum total wait must be 60 - 30 (Stage 3 duration) = 30 seconds.
@@ -638,8 +638,8 @@
 
             let timeLeft = INITIAL_COUNT - totalTimeElapsed;
 
-            if (countdownCircle) countdownCircle.innerText = Math.max(0, timeLeft); 
-            if (timeLeftElement) timeLeftElement.innerText = 'in ' + Math.max(0, timeLeft) + ' seconds';
+            if (countdownCircle) countdownCircle.innerText = Math.round(Math.max(0, timeLeft)); 
+            if (timeLeftElement) timeLeftElement.innerText = 'in ' + Math.round(Math.max(0, timeLeft)) + ' seconds';
 
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
@@ -669,6 +669,7 @@
   </body>
 
 </html>
+
 
 
 
