@@ -58,11 +58,41 @@
           font-size: 2rem;
           font-weight: bold;
           margin: 2rem auto;
-      }
+		  transition: all 0.5s ease;
+	    animation: spin 1s linear infinite, glow-cycle 3s linear infinite;
+	    background: radial-gradient(circle, rgba(0, 210, 255, 0.05) 0%, transparent 70%);
+	  }
+   
       @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
       }
+		
+      /* Color Cycling Animation */
+		@keyframes glow-cycle {
+		    0% { 
+		        border-top-color: #00d2ff; 
+		        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+		        filter: hue-rotate(0deg); 
+		    }
+		    100% { 
+		        border-top-color: #00d2ff;
+		        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+		        filter: hue-rotate(360deg); 
+		    }
+		}
+
+		/* Pulse effect for the background */
+		.bg-futuristic-pulse {
+		    background: radial-gradient(circle, rgba(0, 210, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+		    animation: pulse-bg 4s ease-in-out infinite;
+		}
+		
+		@keyframes pulse-bg {
+		    0%, 100% { opacity: 0.3; transform: scale(1); }
+		    50% { opacity: 0.7; transform: scale(1.05); }
+		}
+	
 	  @media (max-width:500px) {
 		  .maintainace_head{
 			font-size:1.2rem;
@@ -89,6 +119,46 @@
 			padding:0;
 		  }
 	  }
+
+	/* The Scanning Laser Line */
+	#scanner-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 4px;
+		background: linear-gradient(to right, transparent, #00d2ff, #00ff88, #00d2ff, transparent);
+		box-shadow: 0 0 15px 2px rgba(0, 210, 255, 0.7);
+		z-index: 10;
+		pointer-events: none; /* Allows clicking through the line */
+		opacity: 0;
+	}
+	
+	/* Vertical Scanning Animation */
+	.active-scan {
+		animation: scan-move 3s ease-in-out infinite;
+		opacity: 1 !important;
+	}
+	
+	@keyframes scan-move {
+		0% { top: 0%; }
+		50% { top: 100%; }
+		100% { top: 0%; }
+	}
+	
+	/* Futuristic "Locked" Container */
+	.scanning-container {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid rgba(0, 210, 255, 0.2);
+		border-radius: 10px;
+		transition: all 0.5s ease;
+	}
+	
+	.scanning-container.verified {
+		border-color: #198754;
+		box-shadow: inset 0 0 20px rgba(25, 135, 84, 0.2);
+	}
     </style>
   </head>
   <body >
@@ -367,20 +437,35 @@
     function updateDisplay(iconClass, colorClass, isSpinning, initialContent) {
         if (countdownCircle) {
             // Reset base classes
-            countdownCircle.className = 'text-center'; 
-            
+            countdownCircle.className = 'text-center mx-auto d-flex align-items-center justify-content-center';
+			
             if (isSpinning) {
                 // Spinning circle visual (Stage 0 and Stage 3)
                 // colorClass sets the text color AND the border color via CSS 'currentColor'
-                countdownCircle.classList.add('countdown-circle', colorClass, 'text-danger'); 
+                countdownCircle.classList.add('countdown-circle'); 
                 countdownCircle.style.height = '150px'; 
+				countdownCircle.style.width = '150px';
+
+				// Add pulse background to the parent container if it exists
+	            if (countdownCircle.parentElement) {
+	                countdownCircle.parentElement.classList.add('bg-futuristic-pulse');
+	            }
                 
                 // Display remaining time 
-                countdownCircle.innerHTML = totalTimeElapsed > 0 ? Math.round(Math.max(0, INITIAL_COUNT - totalTimeElapsed)) : '<i class=" bi bi-lightning-charge "></i>';
+                //countdownCircle.innerHTML = totalTimeElapsed > 0 ? Math.round(Math.max(0, INITIAL_COUNT - totalTimeElapsed)) : '<i class=" bi bi-lightning-charge "></i>';
+
+				// Inner content: Icon during Stage 0, Numbers during Stage 3
+				// Note: We wrap the content in a div to "un-spin" it so the number stays upright
+				const innerContent = totalTimeElapsed > 0 
+					? Math.round(Math.max(0, INITIAL_COUNT - totalTimeElapsed)) 
+					: `<i class="${iconClass}" style="font-size: 3rem;"></i>`;
+				
+				countdownCircle.innerHTML = `<div style="animation: spin 1s linear infinite reverse;">${innerContent}</div>`;
+				
             } else {
                 // Static icon visual (Stage 2 - Verification)
                 // Explicitly remove the spinning class
-                countdownCircle.classList.remove('countdown-circle', 'text-danger');
+                countdownCircle.classList.remove('countdown-circle');
                 countdownCircle.style.height = '50px'; 
                 countdownCircle.innerHTML = `<i class="${iconClass} ${colorClass}" style="font-size: 2rem;"></i>`;
             }
@@ -468,6 +553,21 @@
         setTimeDisplayMessage('shortly', 'text-info');
         
         if (servicesPanel) servicesPanel.style.opacity = '1';
+
+		// Add the laser line to the services panel
+		if (servicesPanel) {
+		    servicesPanel.classList.add('scanning-container');
+		    
+		    // Create the scanner element if it doesn't exist
+		    if (!document.getElementById('scanner-overlay')) {
+		        const scanner = document.createElement('div');
+		        scanner.id = 'scanner-overlay';
+		        servicesPanel.appendChild(scanner);
+		    }
+		    
+		    // Turn on the laser
+		    document.getElementById('scanner-overlay').classList.add('active-scan');
+		}
         
         // 1. Inject the Verification Instructions ABOVE Services
         if (verificationPromptAreaTop) verificationPromptAreaTop.classList.remove('d-none');
@@ -540,7 +640,15 @@
                 
                 // Enforce Minimum Total Wait Time (30 seconds)
                 verificationComplete = true;
-                
+
+				// Turn OFF the scan and style the container as "Safe"
+		        const scanner = document.getElementById('scanner-overlay');
+		        if (scanner) scanner.classList.remove('active-scan');
+		        
+		        if (servicesPanel) {
+		            servicesPanel.classList.add('verified');
+		        }
+				
                 const elapsedInStage2 = Math.floor((Date.now() - stage2StartTime) / 1000);
                 const currentTotalElapsed = totalTimeElapsed + elapsedInStage2; // 10s from Stage 0
                 
@@ -682,6 +790,7 @@
   </body>
 
 </html>
+
 
 
 
