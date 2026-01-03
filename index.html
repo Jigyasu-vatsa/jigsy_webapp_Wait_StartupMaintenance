@@ -564,7 +564,7 @@
                 //stage3Timeout = setTimeout(stage3_Countdown, newDelayMs);
 
 				stage3Timeout = setTimeout(() => {
-                totalTimeElapsed += currentTotalElapsed + (newDelayMs);
+                totalTimeElapsed = currentTotalElapsed + (newDelayMs);
                 stage3_Countdown();
             }, newDelayMs);
 				
@@ -682,6 +682,7 @@
   </body>
 
 </html>
+
 
 
 
