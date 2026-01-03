@@ -404,6 +404,8 @@
         verificationComplete = false; 
         if (stage3Timeout) clearTimeout(stage3Timeout);
 
+		//------------------------------  STAGE 0  --------------------------
+		
         // Stage 0: Initial UI Setup (10s)
         mainHeading.innerHTML = '🛑 Forwarding Request 🛑';
         updateDisplay('bi bi-lightning-charge', 'text-primary', true, // Spinning ON
@@ -442,9 +444,11 @@
             .catch(e => console.warn("Wakeup request sent."));
 
         // Advance to Stage 2 after 10 seconds
-        setTimeout(stage2_Verification, 10000);
-        totalTimeElapsed = 10;
+        setTimeout(stage2_Verification, 2000);
+        totalTimeElapsed = 2;
     }
+
+	//------------------------------  STAGE 2  --------------------------
 
     function stage2_Verification() {
 		
@@ -582,6 +586,8 @@
         totalTimeElapsed = 35; // Base elapsed time before Stage 3 starts
     }
 
+	//------------------------------  STAGE 3  --------------------------
+
     function stage3_Countdown() {
 		
 		if (timerNote) {
@@ -660,6 +666,7 @@
   </body>
 
 </html>
+
 
 
 
